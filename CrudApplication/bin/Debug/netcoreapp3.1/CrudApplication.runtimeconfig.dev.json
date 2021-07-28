@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Reymark\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Reymark\\.nuget\\packages"
+    ]
+  }
+}
