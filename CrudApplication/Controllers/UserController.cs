@@ -1,11 +1,7 @@
 ﻿using CrudApplication.Data;
 using CrudApplication.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using CrudLibrary;
 
@@ -30,7 +26,7 @@ namespace CrudApplication.Controllers
         // GET: UserController/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return NotFound();
             }
@@ -38,6 +34,7 @@ namespace CrudApplication.Controllers
             var course = await _crudContext.Users
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
+
             if (course == null)
             {
                 return NotFound();
@@ -55,7 +52,7 @@ namespace CrudApplication.Controllers
         // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Email,Password")] UserModel user)
+        public async Task<IActionResult> Create(UserModel user)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +68,7 @@ namespace CrudApplication.Controllers
         // GET: UserController/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return NotFound();
             }
@@ -93,7 +90,7 @@ namespace CrudApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditUser(int id, UserModel user)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return NotFound();
             }
@@ -112,7 +109,7 @@ namespace CrudApplication.Controllers
         // GET: UserController/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return NotFound();
             }
